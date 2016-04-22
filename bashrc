@@ -4,9 +4,6 @@ export PS1="[\[$(tput setaf 4)\]\u\[$(tput setaf 7)\]: \[$(tput bold)\]\[$(tput 
 # Use vi
 set editing-mode vi
 
-# Pretty-print output for ls
-alias ls='ls -GFh'
-
 # Use MacVim's vim
 if [ -f '/Applications/MacVim.app/Contents/MacOS/Vim' ]; then
     alias vim='/Applications/MacVim.app/Contents/MacOS/Vim' # or something like that, YMMV
