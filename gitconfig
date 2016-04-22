@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[core]
+# Please adapt and uncomment the following lines:
+#	user = Max Luzuriaga
+#	email = max@luzuriaga.com
+[user]
+	name = Max Luzuriaga
+	email = max@luzuriaga.com
+[merge]
+	tool = vimdiff
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[push]
+	default = simple
