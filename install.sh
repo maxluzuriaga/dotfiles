@@ -2,8 +2,11 @@
 
 for f in "$PWD"/*
 do
-    if [[ "$f" != *.sh&& "$f" != "*.old" ]]; then
-        FILE="${f##*/}"
+    # Get filename
+    FILE="${f##*/}"
+
+    # Make sure file isn't this file, an archived file, or the README
+    if [[ "$FILE" != *.sh && "$FILE" != *.old && "$FILE" != "README.md" ]]; then
         BASEFILE=$HOME/.$FILE
 
         if [ -f $BASEFILE -a ! -h $BASEFILE ]; then
