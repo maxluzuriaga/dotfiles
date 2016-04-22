@@ -10,7 +10,9 @@ Clone the repo onto your local machine.
 Then run the install script from within the directory to set up the symlinks in `~`. The script automatically archives existing dotfiles that it replaces by moving them into the dotfiles folder with the extension `.old`. Useful if you want to keep the old dotfiles around for later.
 
     $ cd ~/dotfiles
-    # source install.sh
+    $ source install.sh
+
+Note that you can override or add additional configuration on local machines for Bash and Vim by creating and editing `~/.bashrc_local` or `~/.vimrc_local` respectively.
 
 ## Credit
 
