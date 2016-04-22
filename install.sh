@@ -1,7 +1,6 @@
 #!/bin/bash
 
-for f in "$PWD"/*
-do
+for f in "$PWD"/*; do
     # Get filename
     FILE="${f##*/}"
 
@@ -19,5 +18,17 @@ do
         fi
 
         ln -s $f $BASEFILE
+    fi
+done
+
+# Delete any stale links, if any
+for f in ~/.*; do
+    # Only look at links
+    [ ! -h $f ] && continue
+
+    if [ ! -f $f ]; then
+        FILE="${f##*/}"
+        echo "Deleting stale link: $FILE"
+        rm $f
     fi
 done
