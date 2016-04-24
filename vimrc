@@ -33,23 +33,21 @@ call vundle#end()
 
 " === GENERAL CONFIG ===
 
+syntax on
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" Vim5 and later versions support syntax highlighting. Uncommenting the next
-" line enables syntax highlighting by default.
-syntax on
-
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
 endif
 
 " Have Vim load indentation rules according to the detected filetype. Per
 " default Debian Vim only load filetype specific plugins.
 if has("autocmd")
-  filetype plugin indent on
+    filetype plugin indent on
 endif
 
 set showcmd            " Show (partial) command in status line.
@@ -57,7 +55,7 @@ set showmatch          " Show matching brackets.
 set ignorecase         " Do case insensitive matching
 set smartcase          " Do smart case matching
 set incsearch          " Incremental search
-set hlsearch
+set hlsearch           " Highlight results as searching
 set autowrite          " Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 set mouse=a            " Enable mouse usage (all modes) in terminals
@@ -69,7 +67,12 @@ set shiftwidth=4
 set expandtab
 set nolist wrap linebreak breakat&vim
 set breakindent
+
+" Show visual break with '->'
 set showbreak=->\ 
+
+" Don't show mode (Airline takes care of it)
+set noshowmode
 
 set scrolloff=1
 
@@ -89,6 +92,12 @@ if exists('+colorcolumn')
     set colorcolumn=80
 endif
 
+" highlight current line, but only in active window
+augroup CursorLineOnlyInActiveWindow
+    autocmd!
+    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+augroup END
 
 " === PLUGIN CONFIG ===
 
@@ -143,6 +152,11 @@ highlight link SyntasticStyleWarningSign SignColumn
 " === KEY BINDINGS ===
 
 let mapleader = "\<Space>"
+
+" Don't have to press shift to enter a command :)
+nore ; :
+" But sometimes I still want to use the ; command
+nore , ;
 
 " Auto close html tags after typing </
 iabbrev </ </<C-X><C-O>
