@@ -27,6 +27,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'othree/html5.vim'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'majutsushi/tagbar'
+Plugin 'ajh17/VimCompletesMe'
 
 call vundle#end()
 
@@ -167,6 +168,10 @@ map Y y$
 " Backslash hides current search
 nnoremap \ :noh<CR>:<backspace>
 
+" Enter selects the highlighted suggestion when auto-completing
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Leader keys
 nnoremap <Leader>t :CtrlP<CR>
 nnoremap <Leader>r :CtrlPTag<CR>
 nnoremap <Leader>e :NERDTree<CR>
