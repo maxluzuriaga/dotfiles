@@ -75,8 +75,6 @@ set showbreak=->\
 " Don't show mode (Airline takes care of it)
 set noshowmode
 
-set scrolloff=1
-
 " open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
@@ -158,6 +156,10 @@ let mapleader = "\<Space>"
 nore ; :
 " But sometimes I still want to use the ; command
 nore , ;
+
+" Up and down visually
+nnoremap j gj
+nnoremap k gk
 
 " Auto close html tags after typing </
 iabbrev </ </<C-X><C-O>
