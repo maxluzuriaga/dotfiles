@@ -161,9 +161,6 @@ nore , ;
 nnoremap j gj
 nnoremap k gk
 
-" Auto close html tags after typing </
-iabbrev </ </<C-X><C-O>
-
 " Yank to EOL instead of full line
 map Y y$
 
