@@ -76,7 +76,7 @@ set showbreak=->\
 set noshowmode
 
 " open new split panes to right and bottom, which feels more natural
-set splitbelow
+" set splitbelow
 set splitright
 
 
@@ -97,6 +97,7 @@ augroup CursorLineOnlyInActiveWindow
     autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     autocmd WinLeave * setlocal nocursorline
 augroup END
+
 
 " === PLUGIN CONFIG ===
 
