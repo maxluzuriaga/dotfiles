@@ -79,6 +79,9 @@ set noshowmode
 " set splitbelow
 set splitright
 
+" Tabs not spaces for Go
+au FileType go setlocal noexpandtab
+
 
 " === COLORS AND STYLES ===
 
