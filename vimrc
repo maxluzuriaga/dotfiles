@@ -182,8 +182,8 @@ noremap <C-L> <C-W><C-L>
 noremap <C-H> <C-W><C-H>
 
 " Switch between buffers
-noremap <C-Tab> :bn<CR>
-noremap <C-S-Tab> :bp<CR>
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
 
 " Disable arrow keys
 noremap <Up> <NOP>
