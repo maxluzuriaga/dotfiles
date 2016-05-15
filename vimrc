@@ -90,10 +90,6 @@ set t_Co=256
 colorscheme hybrid
 set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline:h12
 
-if exists('+colorcolumn')
-    set colorcolumn=80
-endif
-
 " highlight current line, but only in active window
 augroup CursorLineOnlyInActiveWindow
     autocmd!
@@ -165,9 +161,6 @@ nore , ;
 nnoremap j gj
 nnoremap k gk
 
-" Yank to EOL instead of full line
-map Y y$
-
 " Backslash hides current search
 nnoremap \ :noh<CR>:<backspace>
 
@@ -181,14 +174,16 @@ nnoremap <Leader>e :NERDTree<CR>
 nnoremap <Leader>b :TagbarToggle<CR>
 nnoremap <Leader>w :q<CR>
 nnoremap <Leader>s :w<CR>
-nnoremap <Leader>co :cw<CR>
-nnoremap <Leader>cw :ccl<CR>
 
 " Easy switching between splits
 noremap <C-J> <C-W><C-J>
 noremap <C-K> <C-W><C-K>
 noremap <C-L> <C-W><C-L>
 noremap <C-H> <C-W><C-H>
+
+" Switch between buffers
+noremap <C-Tab> :bn<CR>
+noremap <C-S-Tab> :bp<CR>
 
 " Disable arrow keys
 noremap <Up> <NOP>
