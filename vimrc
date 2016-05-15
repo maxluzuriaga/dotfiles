@@ -152,11 +152,6 @@ highlight link SyntasticStyleWarningSign SignColumn
 
 let mapleader = "\<Space>"
 
-" Don't have to press shift to enter a command :)
-nore ; :
-" But sometimes I still want to use the ; command
-nore , ;
-
 " Up and down visually
 nnoremap j gj
 nnoremap k gk
