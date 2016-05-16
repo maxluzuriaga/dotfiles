@@ -67,7 +67,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set nolist wrap linebreak breakat&vim
-set breakindent
+
+if has("breakindent")
+    set breakindent
+endif
 
 " Show visual break with '->'
 set showbreak=->\ 
@@ -100,11 +103,8 @@ augroup END
 
 " === PLUGIN CONFIG ===
 
-" Airline
-set laststatus=2
-
+" Use Ag over Ack
 if executable('ag')
-    " Use Ag over Grep
     let g:ackprg = 'ag --nogroup --nocolor'
     set grepprg=ag\ --nogroup\ --nocolor
 
@@ -112,8 +112,19 @@ if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-let g:airline_theme='bubblegum'
+" Airline
+set laststatus=2
 
+let g:airline_theme='bubblegum'
+let g:airline#extensions#tabline#enabled = 1
+
+function! AirLineInit()
+    let g:airline_section_x = airline#section#create([''])
+    let g:airline_section_y = airline#section#create(['filetype'])
+endfunction
+autocmd Vimenter * call AirLineInit()
+
+" Powerline symbols
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -121,7 +132,6 @@ endif
 let g:airline_powerline_fonts = 1
 set encoding=utf-8
 
-" Powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
