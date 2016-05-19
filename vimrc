@@ -28,6 +28,8 @@ Plugin 'othree/html5.vim'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'majutsushi/tagbar'
 Plugin 'ajh17/VimCompletesMe'
+Plugin 'tpope/vim-repeat'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 
@@ -157,6 +159,10 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
+" GitGutter
+let g:gitgutter_sign_column_always = 1
+set updatetime=250
+
 
 " === KEY BINDINGS ===
 
@@ -186,9 +192,9 @@ noremap <C-K> <C-W><C-K>
 noremap <C-L> <C-W><C-L>
 noremap <C-H> <C-W><C-H>
 
-" Switch between buffers
-noremap <Tab> :bn<CR>
-noremap <S-Tab> :bp<CR>
+" Switch between windows
+noremap <Tab> <C-W>w
+noremap <S-Tab> <C-W>W
 
 " Disable arrow keys
 noremap <Up> <NOP>
