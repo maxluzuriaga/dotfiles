@@ -62,14 +62,15 @@ set hlsearch           " Highlight results as searching
 set autowrite          " Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 set mouse=a            " Enable mouse usage (all modes) in terminals
+set number             " Show line numbers
 
-set number
-set ruler
+" Tab settings
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set nolist wrap linebreak breakat&vim
 
+" Smarter wrapping
+set nolist wrap linebreak breakat&vim
 if has("breakindent")
     set breakindent
 endif
@@ -79,10 +80,6 @@ set showbreak=->\
 
 " Don't show mode (Airline takes care of it)
 set noshowmode
-
-" open new split panes to right and bottom, which feels more natural
-" set splitbelow
-set splitright
 
 " Tabs not spaces for Go
 au FileType go setlocal noexpandtab
