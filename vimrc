@@ -177,6 +177,11 @@ nnoremap \ :noh<CR>:<backspace>
 " Enter selects the highlighted suggestion when auto-completing
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+" Split with _ and |, and stop the original window scrolling when splitting
+" horizontally
+nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
+nnoremap <expr><silent> _     v:count == 0 ? "Hmx``:split<CR>`xzt``<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
+
 " Leader keys
 nnoremap <Leader>t :CtrlP<CR>
 nnoremap <Leader>r :CtrlPTag<CR>
