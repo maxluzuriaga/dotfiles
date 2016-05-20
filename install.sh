@@ -32,3 +32,13 @@ for f in ~/.*; do
         rm $f
     fi
 done
+
+# Install Vundle if needed
+if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    echo "Vundle installed to ~/.vim/bundle/Vundle.vim"
+fi
+
+echo "Installing Vim plugins..."
+vim +PluginInstall +qall
+echo "...done!"
