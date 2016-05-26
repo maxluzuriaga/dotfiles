@@ -15,7 +15,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -30,6 +29,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ajh17/VimCompletesMe'
 Plugin 'tpope/vim-repeat'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'justinmk/vim-dirvish'
 
 call vundle#end()
 
@@ -139,10 +139,6 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" NERDTree settings
-let NERDTreeIgnore=['\.pyc$', '\.swp$']
-let NERDTreeShowHidden=1
-
 " Syntastic settings
 let g:syntastic_javascript_checkers = ['eslint']
 
@@ -177,12 +173,11 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Split with _ and |, and stop the original window scrolling when splitting
 " horizontally
 nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
-nnoremap <expr><silent> _     v:count == 0 ? "Hmx``:split<CR>`xzt``<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
+nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
 
 " Leader keys
 nnoremap <Leader>t :CtrlP<CR>
 nnoremap <Leader>r :CtrlPTag<CR>
-nnoremap <Leader>e :NERDTree<CR>
 nnoremap <Leader>b :TagbarToggle<CR>
 nnoremap <Leader>w :q<CR>
 nnoremap <Leader>s :w<CR>
