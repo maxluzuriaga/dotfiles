@@ -15,7 +15,7 @@ if [ -f ~/bin/git-completion.bash ]; then
 fi
 
 # Enables Shell integration within iTerm
-test -e ${HOME}/.iterm2_shell_integration.bash && source ${HOME}/.iterm2_shell_integration.bash
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # Local config
 if [ -f ~/.bashrc_local ]; then
