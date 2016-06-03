@@ -1,0 +1,22 @@
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set wrap
+set wrapscan
+set gdefault
+
+" Easy switching between splits
+noremap <C-j> <C-w>j<CR>
+noremap <C-k> <C-w>k<CR>
+noremap <C-h> <C-w>h<CR>
+noremap <C-l> <C-w>l<CR>
+
+" Backslash hides current search
+nnoremap \ :noh<CR>:<backspace>
+
+" Split with _ and |, and stop the original window scrolling when splitting
+" horizontally
+nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
+nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
+
