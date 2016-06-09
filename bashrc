@@ -4,7 +4,7 @@ export PS1="[\[$(tput setaf 4)\]\u\[$(tput setaf 7)\]: \[$(tput bold)\]\[$(tput 
 export EDITOR=vim
 
 # Use vi
-set editing-mode vi
+set -o vi
 
 # Use MacVim's vim
 if [ -f '/Applications/MacVim.app/Contents/MacOS/Vim' ]; then
