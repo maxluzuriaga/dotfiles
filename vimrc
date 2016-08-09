@@ -81,8 +81,9 @@ set showbreak=->\
 " Don't show mode (Airline takes care of it)
 set noshowmode
 
-" Tabs not spaces for Go
+" Tabs not spaces for Go and Makefiles
 au FileType go setlocal noexpandtab
+au FileType make setlocal noexpandtab
 
 
 " === COLORS AND STYLES ===
