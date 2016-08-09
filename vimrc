@@ -91,7 +91,10 @@ au FileType make setlocal noexpandtab
 set background=dark
 set t_Co=256
 colorscheme hybrid
-set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline:h12
+let font='Meslo\ LG\ M\ Regular\ for\ Powerline:'
+let smallSize='h12'
+let bigSize='h18'
+execute ":set guifont=".font.smallSize
 
 " highlight current line, but only in active window
 augroup CursorLineOnlyInActiveWindow
@@ -170,6 +173,10 @@ nnoremap \ :noh<CR>:<backspace>
 
 " Enter selects the highlighted suggestion when auto-completing
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Presentation mode
+command Big :execute "set guifont=".font.bigSize
+command Small :execute "set guifont=".font.smallSize
 
 " Split with _ and |, and stop the original window scrolling when splitting
 " horizontally
