@@ -91,6 +91,8 @@ au FileType make setlocal noexpandtab
 set background=dark
 set t_Co=256
 colorscheme hybrid
+set colorcolumn=80
+
 let font='Meslo\ LG\ M\ Regular\ for\ Powerline:'
 let smallSize='h12'
 let bigSize='h18'
