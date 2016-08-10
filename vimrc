@@ -174,8 +174,8 @@ nnoremap \ :noh<CR>:<backspace>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Presentation mode
-command Big :execute "set guifont=".font.bigSize
-command Small :execute "set guifont=".font.smallSize
+command! Big :execute "set guifont=".font.bigSize
+command! Small :execute "set guifont=".font.smallSize
 
 " Split with _ and |, and stop the original window scrolling when splitting
 " horizontally
