@@ -87,8 +87,9 @@ set showbreak=->\
 " Don't show mode (Airline takes care of it)
 set noshowmode
 
-" Tabs not spaces for Go
+" Tabs not spaces for Go and Makefiles
 au FileType go setlocal noexpandtab
+au FileType make setlocal noexpandtab
 
 
 " === COLORS AND STYLES ===
@@ -96,6 +97,8 @@ au FileType go setlocal noexpandtab
 set background=dark
 set t_Co=256
 colorscheme hybrid
+set colorcolumn=80
+
 let font='Meslo\ LG\ M\ Regular\ for\ Powerline:'
 let smallSize='h12'
 let bigSize='h18'
