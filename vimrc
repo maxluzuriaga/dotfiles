@@ -13,23 +13,29 @@ call vundle#begin()
 " Required
 Plugin 'VundleVim/Vundle.vim'
 
+" Behavior
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'othree/html5.vim'
-Plugin 'w0ng/vim-hybrid'
+Plugin 'tpope/vim-repeat'
+Plugin 'justinmk/vim-dirvish'
 Plugin 'majutsushi/tagbar'
 Plugin 'ajh17/VimCompletesMe'
-Plugin 'tpope/vim-repeat'
+
+" UI
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'w0ng/vim-hybrid'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'justinmk/vim-dirvish'
+Plugin 'scrooloose/syntastic'
+
+" Languages
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/html5.vim'
+Plugin 'jvirtanen/vim-octave'
 
 call vundle#end()
 
