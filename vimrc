@@ -188,8 +188,13 @@ command! Big :execute "set guifont=".font.bigSize
 command! Small :execute "set guifont=".font.smallSize
 
 " Todo.txt editing
-function! ToggleTodo()
-    if expand('%:p') == expand('~/todo.txt')
+function! ToggleFile(file)
+    if expand('%:p') == expand(a:file)
+        " Only close todo buffer if it's not the last one
+        if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) <= 1
+            return
+        endif
+
         let todobufnr = bufnr('%')
 
         if exists('b:todoprevbufnr')
@@ -204,11 +209,11 @@ function! ToggleTodo()
     else
         " Navigate to todo.txt, keeping track of the buffer we came from
         let bufnr = bufnr('%')
-        edit ~/todo.txt
+        execute 'edit' a:file
         let b:todoprevbufnr = bufnr
     endif
 endfunction
-command! Todo call ToggleTodo()
+command! Todo call ToggleFile('~/todo.txt')
 
 " Split with _ and |, and stop the original window scrolling when splitting
 " horizontally
