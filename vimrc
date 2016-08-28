@@ -23,6 +23,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'justinmk/vim-dirvish'
 Plugin 'majutsushi/tagbar'
 Plugin 'ajh17/VimCompletesMe'
+Plugin 'freitass/todo.txt-vim'
 
 " UI
 Plugin 'vim-airline/vim-airline'
@@ -186,6 +187,29 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 command! Big :execute "set guifont=".font.bigSize
 command! Small :execute "set guifont=".font.smallSize
 
+" Todo.txt editing
+function! ToggleTodo()
+    if expand('%:p') == expand('~/todo.txt')
+        let todobufnr = bufnr('%')
+
+        if exists('b:todoprevbufnr')
+            " If we know what buffer we came from, go to that one
+            execute 'buffer' b:todoprevbufnr
+        else
+            " Else just go to whatever is previous in buffer list
+            bprevious
+        endif
+
+        execute 'bdelete' todobufnr
+    else
+        " Navigate to todo.txt, keeping track of the buffer we came from
+        let bufnr = bufnr('%')
+        edit ~/todo.txt
+        let b:todoprevbufnr = bufnr
+    endif
+endfunction
+command! Todo call ToggleTodo()
+
 " Split with _ and |, and stop the original window scrolling when splitting
 " horizontally
 nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
@@ -195,6 +219,7 @@ nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>norma
 nnoremap <Leader>t :CtrlP<CR>
 nnoremap <Leader>r :CtrlPTag<CR>
 nnoremap <Leader>b :TagbarToggle<CR>
+nnoremap <Leader>d :Todo<CR>
 nnoremap <Leader>w :q<CR>
 nnoremap <Leader>s :w<CR>
 
