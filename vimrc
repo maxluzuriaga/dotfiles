@@ -37,6 +37,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
 Plugin 'jvirtanen/vim-octave'
+Plugin 'justinmk/vim-syntax-extra'
 
 call vundle#end()
 
@@ -99,6 +100,8 @@ set background=dark
 set t_Co=256
 colorscheme hybrid
 set colorcolumn=80
+" Turn off background color, so it uses terminal's color
+hi Normal ctermbg=none
 
 let font='Meslo\ LG\ M\ Regular\ for\ Powerline:'
 let smallSize='h12'
