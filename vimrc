@@ -44,6 +44,7 @@ call vundle#end()
 " === GENERAL CONFIG ===
 
 syntax on
+set encoding=utf-8
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
