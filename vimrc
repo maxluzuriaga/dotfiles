@@ -26,11 +26,10 @@ Plugin 'ajh17/VimCompletesMe'
 Plugin 'freitass/todo.txt-vim'
 
 " UI
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'w0ng/vim-hybrid'
+Plugin 'maxluzuriaga/vim-hybrid'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
+Plugin 'ap/vim-buftabline'
 
 " Languages
 Plugin 'pangloss/vim-javascript'
@@ -86,9 +85,6 @@ endif
 " Show visual break with '->'
 set showbreak=->\ 
 
-" Don't show mode (Airline takes care of it)
-set noshowmode
-
 " Tabs not spaces for Go and Makefiles
 au FileType go setlocal noexpandtab
 au FileType make setlocal noexpandtab
@@ -115,6 +111,8 @@ augroup CursorLineOnlyInActiveWindow
     autocmd WinLeave * setlocal nocursorline
 augroup END
 
+" Status bar
+set laststatus=2
 
 " === PLUGIN CONFIG ===
 
@@ -127,33 +125,8 @@ if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" Airline
-set laststatus=2
-
-let g:airline_theme='bubblegum'
-let g:airline#extensions#tabline#enabled = 1
-
-function! AirLineInit()
-    let g:airline_section_x = airline#section#create([''])
-    let g:airline_section_y = airline#section#create(['filetype'])
-endfunction
-autocmd Vimenter * call AirLineInit()
-
-" Powerline symbols
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_powerline_fonts = 1
-set encoding=utf-8
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+" Buftabline
+let g:buftabline_indicators = 1
 
 " Syntastic settings
 let g:syntastic_javascript_checkers = ['eslint']
