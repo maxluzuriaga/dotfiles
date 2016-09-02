@@ -96,8 +96,6 @@ set background=dark
 set t_Co=256
 colorscheme hybrid
 set colorcolumn=80
-" Turn off background color, so it uses terminal's color
-hi Normal ctermbg=none
 
 let font='Meslo\ LG\ M\ Regular\ for\ Powerline:'
 let smallSize='h12'
