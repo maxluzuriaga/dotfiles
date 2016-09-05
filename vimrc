@@ -24,6 +24,7 @@ Plugin 'justinmk/vim-dirvish'
 Plugin 'majutsushi/tagbar'
 Plugin 'ajh17/VimCompletesMe'
 Plugin 'freitass/todo.txt-vim'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " UI
 Plugin 'maxluzuriaga/vim-hybrid'
@@ -212,10 +213,10 @@ nnoremap <Leader>w :q<CR>
 nnoremap <Leader>s :w<CR>
 
 " Easy switching between splits
-noremap <C-J> <C-W><C-J>
-noremap <C-K> <C-W><C-K>
-noremap <C-L> <C-W><C-L>
-noremap <C-H> <C-W><C-H>
+" noremap <C-J> <C-W><C-J>
+" noremap <C-K> <C-W><C-K>
+" noremap <C-L> <C-W><C-L>
+" noremap <C-H> <C-W><C-H>
 
 " Switch between buffers
 noremap <Tab> :bn<CR>
