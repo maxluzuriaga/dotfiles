@@ -1,5 +1,5 @@
 # GENERATED AT https://www.kirsle.net/wizards/ps1.html
-export PS1="\[$(tput setaf 4)\]\u\[$(tput setaf 7)\]: \[$(tput bold)\]\[$(tput setaf 1)\]\w\[$(tput sgr0)\] \$ \[$(tput sgr0)\]"
+export PS1="\[$(tput setaf 4)\]\u\[$(tput setaf 7)\]: \[$(tput bold)\]\[$(tput setaf 9)\]\w\[$(tput sgr0)\] \$ \[$(tput sgr0)\]"
 
 export EDITOR=vim
 
