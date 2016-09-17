@@ -114,13 +114,26 @@ augroup END
 " Status bar
 set laststatus=2
 
+" Features
+" - Display syntastic warnings
+" - Display git
+
 set statusline=
-set statusline+=%<\                       " cut at start
-set statusline+=%2*[%n%H%M%R%W]%*\        " flags and buf no
-set statusline+=%-40f\                    " path
-set statusline+=%=%1*%y%*%*\              " file type
-set statusline+=%10((%l,%c)%)\            " line and column
-set statusline+=%P                        " percentage of file
+set statusline+=%f\ %2*%m\ %1*%h
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%{fugitive#head()}
+set statusline+=%*
+set statusline+=%r%=[%{&encoding}\ %{strlen(&ft)?&ft:'none'}]\ %12.(%c:%l/%L%)
+
+" set statusline=
+" set statusline+=%<\                       " cut at start
+" set statusline+=%2*[%n%H%M%R%W]%*\        " flags and buf no
+" set statusline+=%-40f\                    " path
+" set statusline+=%=%1*%y%*%*\              " file type
+" set statusline+=%10((%l,%c)%)\            " line and column
+" set statusline+=%P                        " percentage of file
 
 " === PLUGIN CONFIG ===
 
@@ -139,10 +152,10 @@ let g:buftabline_indicators = 1
 " Syntastic settings
 let g:syntastic_javascript_checkers = ['eslint']
 
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_error_symbol = '☣'
-let g:syntastic_style_warning_symbol = '💩'
+let g:syntastic_error_symbol = 'EE'
+let g:syntastic_warning_symbol = 'WW'
+let g:syntastic_style_error_symbol = 'SE'
+let g:syntastic_style_warning_symbol = 'SW'
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
@@ -208,7 +221,6 @@ nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>norma
 nnoremap <Leader>t :CtrlP<CR>
 nnoremap <Leader>r :CtrlPTag<CR>
 nnoremap <Leader>b :TagbarToggle<CR>
-nnoremap <Leader>d :Todo<CR>
 nnoremap <Leader>w :q<CR>
 nnoremap <Leader>s :w<CR>
 
