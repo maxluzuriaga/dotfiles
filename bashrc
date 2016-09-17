@@ -6,11 +6,6 @@ export EDITOR=vim
 # Use vi
 set -o vi
 
-# Use MacVim's vim
-if [ -f '/Applications/MacVim.app/Contents/MacOS/Vim' ]; then
-    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim' # or something like that, YMMV
-fi
-
 # Auto-complete for git
 if [ -f ~/bin/git-completion.bash ]; then
   . ~/bin/git-completion.bash
