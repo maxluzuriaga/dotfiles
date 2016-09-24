@@ -25,6 +25,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ajh17/VimCompletesMe'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'metakirby5/codi.vim'
 
 " UI
 Plugin 'maxluzuriaga/vim-hybrid'
@@ -73,6 +74,9 @@ set hidden             " Hide buffers when they are abandoned
 set mouse=a            " Enable mouse usage (all modes) in terminals
 set number             " Show line numbers
 
+" Copy/paste from system keyboard
+set clipboard=unnamed
+
 " Tab settings
 set tabstop=4
 set shiftwidth=4
@@ -111,21 +115,122 @@ augroup CursorLineOnlyInActiveWindow
     autocmd WinLeave * setlocal nocursorline
 augroup END
 
-" Status bar
+" Status Line
 set laststatus=2
+
+" Status Function
+function! Status(winnum)
+    let active = a:winnum == winnr()
+    let bufnum = winbufnr(a:winnum)
+
+    let stat = ''
+
+    " this function just outputs the content colored by the
+    " supplied colorgroup number, e.g. num = 2 -> User2
+    " it only colors the input if the window is the currently
+    " focused one
+    function! Color(active, num, content)
+        if a:active
+            return '%' . a:num . '*' . a:content . '%*'
+        else
+            return a:content
+        endif
+    endfunction
+
+    " this handles alternative statuslines
+    let usealt = 0
+    let altstat = Color(active, 2, ' »')
+
+    let type = getbufvar(bufnum, '&buftype')
+    let name = bufname(bufnum)
+
+    if type ==# 'help'
+        let altstat .= ' ' . fnamemodify(name, ':t:r')
+        let usealt = 1
+    elseif name ==# '__Gundo__'
+        let altstat .= ' Gundo'
+        let usealt = 1
+    elseif name ==# '__Gundo_Preview__'
+        let altstat .= ' Gundo Preview'
+        let usealt = 1
+    endif
+
+    if usealt
+        let altstat .= Color(active, 2, ' «')
+        return altstat
+    endif
+
+    " file name
+    let stat .= Color(active, 2, active ? ' »' : ' «')
+    let stat .= ' %<'
+    let stat .= Color(active, 4, '%f')
+    let stat .= ' ' . Color(active, 2, active ? '«' : '»')
+
+    " file modified
+    let modified = getbufvar(bufnum, '&modified')
+    let stat .= Color(active, 3, modified ? ' +' : '')
+
+    " read only
+    let readonly = getbufvar(bufnum, '&readonly')
+    let stat .= Color(active, 3, readonly ? ' ‼' : '')
+
+    " paste
+    if active && &paste
+        let stat .= ' %2*' . 'P' . '%*'
+    endif
+
+    let stat .= ' %#warningmsg#' " switch to warningmsg color
+    let stat .= '%{SyntasticStatuslineFlag()}' " show Syntastic flag
+    let stat .= '%*' " back to normal color
+
+    " right side
+    let stat .= '%='
+
+    if active
+        let stat .= '%5*栏%*%c %5*行%*%l/%L' " col and row numbers
+    endif
+
+    " git branch
+    if exists('*fugitive#head')
+        let head = fugitive#head()
+
+        if empty(head) && exists('*fugitive#detect') && !exists('b:git_dir')
+            call fugitive#detect(getcwd())
+            let head = fugitive#head()
+        endif
+    endif
+
+    if !empty(head)
+        let stat .= Color(active, 2, ' ← ') . Color(active, 4, head) . ' '
+    endif
+
+    return stat
+endfunction
+
+" Status AutoCMD
+function! s:RefreshStatus()
+    for nr in range(1, winnr('$'))
+    call setwinvar(nr, '&statusline', '%!Status(' . nr . ')')
+  endfor
+endfunction
+
+augroup status
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * call <SID>RefreshStatus()
+augroup END
 
 " Features
 " - Display syntastic warnings
 " - Display git
 
-set statusline=
-set statusline+=%f\ %2*%m\ %1*%h
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=%{fugitive#head()}
-set statusline+=%*
-set statusline+=%r%=[%{&encoding}\ %{strlen(&ft)?&ft:'none'}]\ %12.(%c:%l/%L%)
+" set statusline=
+" set statusline+=%f\ %2*%m\ %1*%h
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" set statusline+=%{fugitive#head()}
+" set statusline+=%*
+" set statusline+=%r%=[%{&encoding}\ %{strlen(&ft)?&ft:'none'}]\ %12.(%c:%l/%L%)
 
 " set statusline=
 " set statusline+=%<\                       " cut at start
