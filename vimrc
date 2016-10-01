@@ -75,7 +75,7 @@ set mouse=a            " Enable mouse usage (all modes) in terminals
 set number             " Show line numbers
 
 " Copy/paste from system keyboard
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " Tab settings
 set tabstop=4
