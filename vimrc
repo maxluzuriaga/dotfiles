@@ -275,6 +275,10 @@ set updatetime=250
 
 let mapleader = "\<Space>"
 
+" More ergonomic escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+
 " Up and down visually
 nnoremap j gj
 nnoremap k gk
