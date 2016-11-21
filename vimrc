@@ -103,6 +103,11 @@ set t_Co=256
 colorscheme hybrid
 set colorcolumn=80
 
+" Set cursor shapes by mode
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 let font='Meslo\ LG\ M\ Regular\ for\ Powerline:'
 let smallSize='h12'
 let bigSize='h18'
