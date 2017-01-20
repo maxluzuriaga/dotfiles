@@ -39,6 +39,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
 Plugin 'jvirtanen/vim-octave'
 Plugin 'justinmk/vim-syntax-extra'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 
@@ -261,6 +262,7 @@ let g:buftabline_indicators = 1
 
 " Syntastic settings
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck', 'go']
 
 let g:syntastic_error_symbol = 'EE'
 let g:syntastic_warning_symbol = 'WW'
