@@ -228,26 +228,6 @@ augroup status
   autocmd VimEnter,WinEnter,BufWinEnter * call <SID>RefreshStatus()
 augroup END
 
-" Features
-" - Display syntastic warnings
-" - Display git
-
-" set statusline=
-" set statusline+=%f\ %2*%m\ %1*%h
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" set statusline+=%{fugitive#head()}
-" set statusline+=%*
-" set statusline+=%r%=[%{&encoding}\ %{strlen(&ft)?&ft:'none'}]\ %12.(%c:%l/%L%)
-
-" set statusline=
-" set statusline+=%<\                       " cut at start
-" set statusline+=%2*[%n%H%M%R%W]%*\        " flags and buf no
-" set statusline+=%-40f\                    " path
-" set statusline+=%=%1*%y%*%*\              " file type
-" set statusline+=%10((%l,%c)%)\            " line and column
-" set statusline+=%P                        " percentage of file
 
 " === PLUGIN CONFIG ===
 
@@ -342,12 +322,6 @@ nnoremap <Leader>r :CtrlPTag<CR>
 nnoremap <Leader>b :TagbarToggle<CR>
 nnoremap <Leader>w :q<CR>
 nnoremap <Leader>s :w<CR>
-
-" Easy switching between splits
-" noremap <C-J> <C-W><C-J>
-" noremap <C-K> <C-W><C-K>
-" noremap <C-L> <C-W><C-L>
-" noremap <C-H> <C-W><C-H>
 
 " Switch between buffers
 noremap <Tab> :bn<CR>
