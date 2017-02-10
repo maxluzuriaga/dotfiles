@@ -96,6 +96,21 @@ set showbreak=->\
 au FileType go setlocal noexpandtab
 au FileType make setlocal noexpandtab
 
+" cscope config
+if has('cscope')
+    set cscopetag cscopeverbose
+
+    if has('quickfix')
+        set cscopequickfix=s-,c-,d-,i-,t-,e-
+    endif
+
+    cnoreabbrev csa cs add
+    cnoreabbrev csf cs find
+    cnoreabbrev csk cs kill
+    cnoreabbrev csr cs reset
+    cnoreabbrev css cs show
+    cnoreabbrev csh cs help
+endif
 
 " === COLORS AND STYLES ===
 
