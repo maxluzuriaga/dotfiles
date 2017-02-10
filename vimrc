@@ -283,34 +283,6 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 command! Big :execute "set guifont=".font.bigSize
 command! Small :execute "set guifont=".font.smallSize
 
-" Todo.txt editing
-function! ToggleFile(file)
-    if expand('%:p') == expand(a:file)
-        " Only close todo buffer if it's not the last one
-        if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) <= 1
-            return
-        endif
-
-        let todobufnr = bufnr('%')
-
-        if exists('b:todoprevbufnr')
-            " If we know what buffer we came from, go to that one
-            execute 'buffer' b:todoprevbufnr
-        else
-            " Else just go to whatever is previous in buffer list
-            bprevious
-        endif
-
-        execute 'bdelete' todobufnr
-    else
-        " Navigate to todo.txt, keeping track of the buffer we came from
-        let bufnr = bufnr('%')
-        execute 'edit' a:file
-        let b:todoprevbufnr = bufnr
-    endif
-endfunction
-command! Todo call ToggleFile('~/todo.txt')
-
 " Split with _ and |, and stop the original window scrolling when splitting
 " horizontally
 nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
