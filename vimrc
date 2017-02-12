@@ -262,6 +262,8 @@ let g:buftabline_indicators = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck', 'go']
 
+let g:syntastic_c_checkers = ['make']
+
 let g:syntastic_error_symbol = 'EE'
 let g:syntastic_warning_symbol = 'WW'
 let g:syntastic_style_error_symbol = 'SE'
