@@ -23,7 +23,6 @@ Plugin 'tpope/vim-repeat'
 Plugin 'justinmk/vim-dirvish'
 Plugin 'majutsushi/tagbar'
 Plugin 'ajh17/VimCompletesMe'
-Plugin 'freitass/todo.txt-vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'metakirby5/codi.vim'
 
@@ -37,7 +36,6 @@ Plugin 'ap/vim-buftabline'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
-Plugin 'jvirtanen/vim-octave'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'fatih/vim-go'
 
@@ -74,9 +72,6 @@ set autowrite          " Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 set mouse=a            " Enable mouse usage (all modes) in terminals
 set number             " Show line numbers
-
-" Copy/paste from system keyboard
-" set clipboard=unnamed
 
 " Tab settings
 set tabstop=4
@@ -122,15 +117,11 @@ set colorcolumn=80
 " Set cursor shapes by mode
 let &t_SI = "\<Esc>[6 q"
 let &t_EI = "\<Esc>[2 q"
-
 if has("t_SR")
     let &t_SR = "\<Esc>[4 q"
 endif
 
-let font='Meslo\ LG\ M\ Regular\ for\ Powerline:'
-let smallSize='h12'
-let bigSize='h18'
-execute ":set guifont=".font.smallSize
+set guifont=Meslo\ LG\ M\ Regular\ for\ Powerline:h12
 
 " highlight current line, but only in active window
 augroup CursorLineOnlyInActiveWindow
@@ -296,10 +287,6 @@ nnoremap \ :noh<CR>:<backspace>
 " Enter selects the highlighted suggestion when auto-completing
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Presentation mode
-command! Big :execute "set guifont=".font.bigSize
-command! Small :execute "set guifont=".font.smallSize
-
 " Split with _ and |, and stop the original window scrolling when splitting
 " horizontally
 nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
@@ -308,7 +295,6 @@ nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>norma
 " Leader keys
 nnoremap <Leader>t :CtrlP<CR>
 nnoremap <Leader>r :CtrlPTag<CR>
-nnoremap <Leader>b :TagbarToggle<CR>
 nnoremap <Leader>w :q<CR>
 nnoremap <Leader>s :w<CR>
 
