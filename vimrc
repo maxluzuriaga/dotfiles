@@ -25,12 +25,14 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ajh17/VimCompletesMe'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'metakirby5/codi.vim'
+Plugin 'junegunn/fzf.vim'
 
 " UI
 Plugin 'maxluzuriaga/vim-hybrid'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'ap/vim-buftabline'
+Plugin 'kien/rainbow_parentheses.vim'
 
 " Languages
 Plugin 'pangloss/vim-javascript'
@@ -268,6 +270,11 @@ highlight link SyntasticStyleWarningSign SignColumn
 " GitGutter
 set updatetime=250
 
+" Always enable rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " === KEY BINDINGS ===
 
