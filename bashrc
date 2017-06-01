@@ -14,8 +14,10 @@ fi
 # Enables Shell integration within iTerm
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-# Smarter mkdir
-function mkdir { /bin/mkdir $* && cd $1; }
+# Prettier cat output
+if [ `which ccat` ]; then
+    alias cat='ccat --bg=dark'
+fi
 
 # Local config
 if [ -f ~/.bashrc_local ]; then
