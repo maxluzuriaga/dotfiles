@@ -23,3 +23,6 @@ fi
 if [ -f ~/.bashrc_local ]; then
     source ~/.bashrc_local
 fi
+
+# Load in fzf config if present
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

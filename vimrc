@@ -15,7 +15,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Behavior
 Plugin 'mileszs/ack.vim'
-Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
@@ -244,9 +243,13 @@ if executable('ag')
     let g:ackprg = 'ag --nogroup --nocolor'
     set grepprg=ag\ --nogroup\ --nocolor
 
-    " Use ag in CtrlP for listing files
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " Use ag in fzf for listing files
+    let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'
 endif
+
+" Show a preview of each file with fzf with ccat (if installed) or cat
+let g:fzf_files_options =
+  \ '--preview "(ccat --bg=dark {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
 " Buftabline
 let g:buftabline_indicators = 1
@@ -276,6 +279,10 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+" Necessary to enable fzf
+set rtp+=/usr/local/opt/fzf
+
+
 " === KEY BINDINGS ===
 
 let mapleader = "\<Space>"
@@ -299,9 +306,11 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
 nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
 
+" Search with fzf
+nnoremap <C-p> :Files<CR>
+
 " Leader keys
 nnoremap <Leader>t :CtrlP<CR>
-nnoremap <Leader>r :CtrlPTag<CR>
 nnoremap <Leader>w :q<CR>
 nnoremap <Leader>s :w<CR>
 
