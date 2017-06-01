@@ -1,0 +1,7 @@
+log
+tags
+tmp
+.*.swp
+vendor
+.git/
+node_modules/
