@@ -21,3 +21,6 @@ fi
 
 # Load in fzf config if present
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Journal alias
+alias journal='vim + ~/Dropbox/journal/$(date +%Y)/$(date +%Y%m%d).md -c "execute \"normal! Go\<CR>$(date +%T)\<CR>========\<CR>\" | startinsert "'
