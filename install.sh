@@ -26,7 +26,7 @@ for f in ~/.*; do
     # Only look at links
     [ ! -h $f ] && continue
 
-    if [ ! -f $f ]; then
+    if [ ! -f $f -a ! -d $f ]; then
         FILE="${f##*/}"
         echo "Deleting stale link: $FILE"
         rm $f
