@@ -39,6 +39,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'fatih/vim-go'
+Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()
 
