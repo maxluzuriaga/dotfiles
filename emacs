@@ -37,7 +37,16 @@
     (interactive "p")
     (dotimes (_ count) (save-excursion (evil-insert-newline-below))))
   (define-key evil-normal-state-map (kbd "[ SPC") 'evil-unimpaired/insert-space-above)
-  (define-key evil-normal-state-map (kbd "] SPC") 'evil-unimpaired/insert-space-below))
+  (define-key evil-normal-state-map (kbd "] SPC") 'evil-unimpaired/insert-space-below)
+
+  (define-key evil-normal-state-map (kbd "|") 'split-window-right)
+  (define-key evil-normal-state-map (kbd "_") 'split-window-below))
+
+(use-package evil-commentary
+  :ensure t
+
+  :config
+  (evil-commentary-mode))
 
 (use-package helm
   :ensure t
@@ -136,3 +145,6 @@
    "/usr/local/sbin"))
 
 (set-face-attribute 'default nil :family "Meslo LG M")
+
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(setq comint-prompt-read-only t)
