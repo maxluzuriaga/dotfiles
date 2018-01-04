@@ -40,7 +40,18 @@
   (define-key evil-normal-state-map (kbd "] SPC") 'evil-unimpaired/insert-space-below)
 
   (define-key evil-normal-state-map (kbd "|") 'split-window-right)
-  (define-key evil-normal-state-map (kbd "_") 'split-window-below))
+  (define-key evil-normal-state-map (kbd "_") 'split-window-below)
+
+  ;; TODO separate into own file
+  (defun open-dired-curr-dir ()
+    "Opens the current buffer's director in dired and moves cursor to the buffer's file"
+    (interactive)
+    (when buffer-file-name
+      (let ((buf-file buffer-file-name))
+	(progn (dired default-directory)
+	       (dired-goto-file buf-file)))))
+
+  (define-key evil-normal-state-map (kbd "-") 'open-dired-curr-dir))
 
 (use-package evil-commentary
   :ensure t
@@ -101,6 +112,95 @@
     evil-replace-state-cursor `(,(plist-get my/base16-colors :base08) bar)
     evil-visual-state-cursor  `(,(plist-get my/base16-colors :base09) box)))
 
+(use-package git-gutter-fringe
+  :ensure t
+
+  :config
+  (git-gutter-mode))
+
+(use-package spaceline
+  :ensure t)
+
+(use-package spaceline-config :ensure spaceline
+  :config
+  (spaceline-helm-mode 1)
+  (spaceline-emacs-theme))
+
+(use-package diminish
+  :ensure t
+
+  :config
+  (diminish 'helm-mode)
+  (diminish 'undo-tree-mode)
+  (diminish 'evil-commentary-mode)
+  (diminish 'git-gutter-mode)
+  (diminish 'projectile-mode))
+
+;; Dired config
+(require 'dired-x)
+(setq-default dired-omit-files-p t)
+(setq dired-omit-files "^#.#$\\|.~$")
+(dired-omit-mode)
+(setq dired-listing-switches "-alhv")
+(setq dired-auto-revert-buffer t)
+
+(use-package dired+
+  :ensure t)
+
+(use-package rainbow-delimiters
+  :ensure t
+
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+(use-package org
+  :ensure t
+
+  :config
+  (setq org-agenda-files '("~/Dropbox/org"))
+  (add-hook 'after-init-hook
+	    '(lambda ()
+	       (org-agenda-list)
+	       (delete-other-windows)))
+
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-log-into-drawer t)
+
+  (defun normal-mode-org-M-ret ()
+    "Used in normal mode to prevent splitting an org mode heading on M-ret"
+    (interactive)
+    (progn (org-end-of-item-list)
+	   (org-meta-return)))
+
+  ;; TODO fix this function ^
+  ;;(evil-define-key 'normal org-mode--map (kbd "M-return") 'normal-mode-org-M-ret)
+
+  )
+
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+            (lambda ()
+              (evil-org-set-key-theme '(navigation insert textobjects additional calendar))))
+
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
+;; Stop default startup screen
+(setq inhibit-startup-screen t)
+
+;; Moving around windows
+(global-set-key (kbd "M-h")  'windmove-left)
+(global-set-key (kbd "M-j") 'windmove-down)
+(global-set-key (kbd "M-k")    'windmove-up)
+(global-set-key (kbd "M-l")  'windmove-right)
+
+;; Wrap lines
+(global-visual-line-mode 1)
+
 ;; Line numbers
 (add-hook 'prog-mode-hook 'linum-mode)
 
@@ -123,9 +223,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-mode t)
  '(package-selected-packages
    (quote
-    (helm-ag projectile helm key-chord use-package evil base16-theme)))
+    (go evil-org rainbow-delimiters diminish dired+ spaceline git-gutter-fringe helm-ag projectile helm key-chord use-package evil base16-theme)))
  '(projectile-mode t nil (projectile)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
