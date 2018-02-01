@@ -118,6 +118,9 @@
   :config
   (git-gutter-mode))
 
+(use-package magit
+  :ensure t)
+
 (use-package spaceline
   :ensure t)
 
@@ -143,6 +146,7 @@
 (dired-omit-mode)
 (setq dired-listing-switches "-alhv")
 (setq dired-auto-revert-buffer t)
+(define-key dired-mode-map (kbd "-") 'diredp-up-directory)
 
 (use-package dired+
   :ensure t)
@@ -158,10 +162,16 @@
 
   :config
   (setq org-agenda-files '("~/Dropbox/org"))
+
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (setq org-default-notes-file "~/Dropbox/org/i.org")
+  
   (add-hook 'after-init-hook
-	    '(lambda ()
-	       (org-agenda-list)
-	       (delete-other-windows)))
+  	    '(lambda ()
+  	       (org-agenda-list)
+  	       (delete-other-windows)))
+
+  ;; TODO figure out a way to have org-habit count up to 2am as previous day
 
   (add-to-list 'org-modules 'org-habit)
   (setq org-log-into-drawer t)
@@ -175,7 +185,8 @@
   ;; TODO fix this function ^
   ;;(evil-define-key 'normal org-mode--map (kbd "M-return") 'normal-mode-org-M-ret)
 
-  )
+  (setq org-extend-today-until 3)
+  (setq org-use-effective-time t))
 
 (use-package evil-org
   :ensure t
@@ -189,14 +200,15 @@
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
 
+(use-package org-journal
+  :ensure t
+
+  :config
+  (setq org-journal-dir "~/Dropbox/org/journal")
+  (setq org-journal-time-format ""))
+
 ;; Stop default startup screen
 (setq inhibit-startup-screen t)
-
-;; Moving around windows
-(global-set-key (kbd "M-h")  'windmove-left)
-(global-set-key (kbd "M-j") 'windmove-down)
-(global-set-key (kbd "M-k")    'windmove-up)
-(global-set-key (kbd "M-l")  'windmove-right)
 
 ;; Wrap lines
 (global-visual-line-mode 1)
@@ -218,6 +230,11 @@
 ;; No bell
 (setq ring-bell-function 'ignore)
 
+;; Vim-like scrolling
+;; TODO if any problems with scroll jumping, try suggestions here:
+;; https://www.emacswiki.org/emacs/SmoothScrolling
+(setq scroll-conservatively 10000)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -226,7 +243,7 @@
  '(helm-mode t)
  '(package-selected-packages
    (quote
-    (go evil-org rainbow-delimiters diminish dired+ spaceline git-gutter-fringe helm-ag projectile helm key-chord use-package evil base16-theme)))
+    (org-journal magit smooth-scrolling go evil-org rainbow-delimiters diminish dired+ spaceline git-gutter-fringe helm-ag projectile helm key-chord use-package evil base16-theme)))
  '(projectile-mode t nil (projectile)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -243,7 +260,8 @@
    "/sbin:"
    "/usr/sbin:"
    "/usr/local/bin:"
-   "/usr/local/sbin"))
+   "/usr/local/sbin:"
+   "/Library/TeX/texbin"))
 
 (set-face-attribute 'default nil :family "Meslo LG M")
 
