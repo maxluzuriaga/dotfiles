@@ -106,8 +106,8 @@
   ;; Set the cursor color based on the evil state
   (defvar my/base16-colors base16-tomorrow-night-colors)
   (setq evil-emacs-state-cursor   `(,(plist-get my/base16-colors :base0D) box)
-    evil-insert-state-cursor  `(,(plist-get my/base16-colors :base0D) bar)
-    evil-motion-state-cursor  `(,(plist-get my/base16-colors :base0E) box)
+    evil-insert-state-cursor  `(,(plist-get my/base16-colors :base0E) bar)
+    evil-motion-state-cursor  `(,(plist-get my/base16-colors :base0D) box)
     evil-normal-state-cursor  `(,(plist-get my/base16-colors :base0B) box)
     evil-replace-state-cursor `(,(plist-get my/base16-colors :base08) bar)
     evil-visual-state-cursor  `(,(plist-get my/base16-colors :base09) box)))
